@@ -1,0 +1,21 @@
+graph TD
+    subgraph Databricks Notebook
+        Start([Start]) --> Init[Init Config & Libs]
+        Init --> DK_GetID[DK: Get Report ID]
+        DK_GetID --> DK_GetBatch[DK: Get Batch ID]
+        DK_GetBatch --> DK_GetData[DK: Get Data (DataFrame)]
+        DK_GetData --> Transform[Construct JSON Payload]
+        Transform --> Login[Unify: Login API]
+        Login --> Save[Unify: SaveReport API]
+        Save --> End([End])
+    end
+    
+    subgraph External Systems
+        DK_Lib[DK Utility Belt]
+        Unify_API[Unify API]
+    end
+
+    DK_GetID -.-> DK_Lib
+    DK_GetData -.-> DK_Lib
+    Login -.-> Unify_API
+    Save -.-> Unify_API
