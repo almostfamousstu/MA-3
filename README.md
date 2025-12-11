@@ -1,20 +1,9 @@
-# **Dior US Flat Files Process Automation**
+# **GenMerch Assembly Automation**
 
 ## 📄 Overview
 
-**Dior US Flat Files Process Automation**
-Dior Flat Files are delivered on the same day as DK Monthly Go-Live. Currently they are produced manually using the Flat File Admin Tool and Microsoft Azure. The objective of this solution is to reliably automate this process.
-
-
-**POC DISCLAIMER**
-This repository serves as the **proof of concept (POC)** for the MARU Developer Portal.
-The goal of this POC is to demonstrate a streamlined onboarding and execution workflow for third-party developers within a standardized GitHub environment.
-
-This repository allows developers to:
-
-* Quickly spin up a ready-to-use **Codespace** environment with all dependencies preinstalled.
-* Review structured documentation outlining **requirements**, **constraints**, and **solution design**.
-* Implement, test, and deliver a working automation with minimal setup friction.
+**GenMerch Assembly Automation**
+Automate POS frequency processing by reducing the hand off and manual interventions.
 
 ---
 
@@ -22,13 +11,14 @@ This repository allows developers to:
 
 The task is to **develop and validate a Python script** that:
 
-1. Calls the Decision Key reporting service via provided SDK.
-2. Retrieves the required dataset.
-3. Generates a properly formatted flat file.
-4. Delivers the file to the designated internal location (secure mFTP endpoint).
+1. Anomaly Detection will now fill out a standardized form with all of the parameters that they normally share via Teams Message.
+2. A Python RPA application then takes that signal, produces the same message AO would normally post, and posts it to Teams.
+3. The app then goes through all the manual NAV clicking, status updates (GOATS, Felix) that the Genpact Ops team manually does in the closeout process.
 
 **Current Implementation:**
-This solution automates the migration of Decision Key reports to Unify. The solution wraps the provided `DK` library to extract source report metadata and constructs a compliant JSON payload for the Unify `saveReport` API.
+1. Anomaly Detection Hands-off to GenMerch Delivery team via a Teams message.
+2. The team takes those parameters and translates them into job orders in NAV (Edit Manager, Console, Element Centre, ETL Job Control).
+3. They monitor the status of those jobs, updating tracking tools, and then post back to Teams for final validation by Anomaly Detection.
 
 ---
 
